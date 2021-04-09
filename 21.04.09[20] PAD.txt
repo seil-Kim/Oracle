@@ -1,0 +1,6 @@
+select lpad(ename, 10, '-')
+from employee;
+
+
+select rpad(lpad(ename, 10, '-'), 15, '-')
+from employee;
