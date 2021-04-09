@@ -1,0 +1,2 @@
+select  ename, salary, commission, round(salary * 12 + NVL(COMMISSION, 0)*1.75, -3) 연봉, mod(salary * 12 + NVL(COMMISSION, 0)*1.75, 1000) "1000원 미만 금액"
+from employee;
