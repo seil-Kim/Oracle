@@ -1,0 +1,13 @@
+SELECT 'Oracle mania',
+    UPPER('Oracle mania'),
+    LOWER('Oracle mania'),
+    INITCAP('Oracle mania')
+FROM DUAL;
+
+
+SELECT 'KING',
+    UPPER('KING'),
+    LOWER('KING'),
+    INITCAP('KING')
+FROM EMPLOYEE
+WHERE ENAME = 'KING';
