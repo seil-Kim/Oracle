@@ -1,0 +1,30 @@
+SELECT ename, substr(ename, 2), substr(ename, -2, 1), substr(ename, -3, 2), substr(ename, -2)
+from employee;
+
+
+SELECT substr('대한민국 국민은 민주주의자이다', 6,2)
+from dual;
+
+
+SELECT substrb('대한민국 국민은 민주주의자이다', 14,6)
+from dual;
+
+
+SELECT ename
+from employee
+where substr(ename, -1) = 'N';
+
+
+SELECT ename, hiredate
+from employee
+where substr(hiredate, -5, 2) = '12';
+
+
+SELECT ename, hiredate
+from employee
+where substr(hiredate, 4, 2) = '12';
+
+
+select ename
+from employee
+where substr(ename, 2, 1) = 'A' or substr(ename, 3, 1) = 'A'
