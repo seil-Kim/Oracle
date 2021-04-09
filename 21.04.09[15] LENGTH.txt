@@ -1,0 +1,6 @@
+SELECT LENGTH('OracleMania'), LENGTH('오라클매니아')
+from dual;
+
+
+SELECT LENGTHB('OracleMania'), LENGTHB('오라클매니아')
+from dual;
