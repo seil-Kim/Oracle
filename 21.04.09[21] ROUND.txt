@@ -1,0 +1,13 @@
+select 98.7654,
+        round(98.7654),
+        round(98.7654, 2),
+        round(98.7654, -1)
+from dual;
+
+
+select  ename, salary, commission, round(salary * 12 + commission, -3) 연봉
+from employee;
+
+
+select  ename, salary, commission, round(salary * 12 + NVL(COMMISSION, 0)*1.75, -3) 연봉
+from employee;
