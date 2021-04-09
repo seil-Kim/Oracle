@@ -1,0 +1,80 @@
+SQL> conn hr/hr
+Connected.
+SQL> SELECT ENAME, SALARY * 12 + NVL(COMMISSION, 0)
+  2  FROM EMPLOYEE;
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+SMITH                                       9600
+ALLEN                                      19500
+WARD                                       15500
+JONES                                      35700
+MARTIN                                     16400
+BLAKE                                      34200
+CLARK                                      29400
+SCOTT                                      36000
+KING                                       60000
+TURNER                                     18000
+ADAMS                                      13200
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+JAMES                                      11400
+FORD                                       36000
+MILLER                                     15600
+
+14 rows selected.
+
+
+SQL> L
+  1  SELECT ENAME, SALARY * 12 + NVL(COMMISSION, 0)
+  2* FROM EMPLOYEE
+SQL> /
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+SMITH                                       9600
+ALLEN                                      19500
+WARD                                       15500
+JONES                                      35700
+MARTIN                                     16400
+BLAKE                                      34200
+CLARK                                      29400
+SCOTT                                      36000
+KING                                       60000
+TURNER                                     18000
+ADAMS                                      13200
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+JAMES                                      11400
+FORD                                       36000
+MILLER                                     15600
+
+14 rows selected.
+
+SQL> R
+  1  SELECT ENAME, SALARY * 12 + NVL(COMMISSION, 0)
+  2* FROM EMPLOYEE
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+SMITH                                       9600
+ALLEN                                      19500
+WARD                                       15500
+JONES                                      35700
+MARTIN                                     16400
+BLAKE                                      34200
+CLARK                                      29400
+SCOTT                                      36000
+KING                                       60000
+TURNER                                     18000
+ADAMS                                      13200
+
+ENAME                SALARY*12+NVL(COMMISSION,0)
+-------------------- ---------------------------
+JAMES                                      11400
+FORD                                       36000
+MILLER                                     15600
+
+14 rows selected.
