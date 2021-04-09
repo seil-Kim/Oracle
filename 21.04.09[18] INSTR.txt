@@ -1,0 +1,23 @@
+SELECT instr('Oracle mania', 'a', 1, 2)
+from dual;
+
+instr(대상, 찾을글자, 시작위치, 몇 번째 발견)
+
+
+SELECT instr('korea america abc', 'a', 7, 2)
+from dual;
+
+
+SELECT ename, instr(ename, 'M')
+from employee
+where ename like '%M%';
+
+
+select ename
+from employee
+where instr(ename, 'A', 2, 1) = 2 or instr(ename, 'A', 3, 1) = 3;
+
+
+select ename
+from employee
+where instr(ename, 'A', 2) in (2,3)
