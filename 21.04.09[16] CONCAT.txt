@@ -1,0 +1,2 @@
+SELECT concat(concat(ename, ':'), job)
+from employee;
