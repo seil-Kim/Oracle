@@ -1,0 +1,37 @@
+SQL> ED
+Wrote file afiedt.buf
+
+SELECT ENAME, SALARY * 12 + NVL(COMMISSION, 0)
+FROM EMPLOYEE
+/
+
+  1  SELECT ENAME, SALARY
+  2* FROM EMPLOYEE
+
+SQL> SAVE SAMPLE
+Created file SAMPLE.sql
+
+SQL> @SAMPLE
+
+ENAME                    SALARY
+-------------------- ----------
+SMITH                       800
+ALLEN                      1600
+WARD                       1250
+JONES                      2975
+MARTIN                     1250
+BLAKE                      2850
+CLARK                      2450
+SCOTT                      3000
+KING                       5000
+TURNER                     1500
+ADAMS                      1100
+
+ENAME                    SALARY
+-------------------- ----------
+JAMES                       950
+FORD                       3000
+MILLER                     1300
+
+14 rows selected.
+
