@@ -1,0 +1,54 @@
+SQL> SPOOL TEST
+SQL> SELECT ENAME, SALARY * 12
+  2  FROM EMPLOYEE;
+
+ENAME                 SALARY*12
+-------------------- ----------
+SMITH                      9600
+ALLEN                     19200
+WARD                      15000
+JONES                     35700
+MARTIN                    15000
+BLAKE                     34200
+CLARK                     29400
+SCOTT                     36000
+KING                      60000
+TURNER                    18000
+ADAMS                     13200
+
+ENAME                 SALARY*12
+-------------------- ----------
+JAMES                     11400
+FORD                      36000
+MILLER                    15600
+
+14 rows selected.
+
+SQL> SELECT *
+  2  FROM DEPARTMENT;
+
+       DNO DNAME                        LOC
+---------- ---------------------------- --------------------------
+        10 ACCOUNTING                   NEW YORK
+        20 RESEARCH                     DALLAS
+        30 SALES                        CHICAGO
+        40 OPERATIONS                   BOSTON
+
+SQL> SPOOL OFF
+SQL> HOST
+Microsoft Windows [Version 10.0.19042.867]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\oraclexe\app\oracle\product\11.2.0\server\BIN>DIR*.LST
+'DIR*.LST'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+C:\oraclexe\app\oracle\product\11.2.0\server\BIN>dir *.lst
+ C 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: F2B0-1777
+
+ C:\oraclexe\app\oracle\product\11.2.0\server\BIN 디렉터리
+
+2021-04-09  오후 02:57             2,106 TEST.LST
+               1개 파일               2,106 바이트
+               0개 디렉터리  189,396,439,040 바이트 남음
