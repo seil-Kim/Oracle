@@ -1,0 +1,4 @@
+select ename, salary, commission,
+        coalesce(commission, salary, 0)
+from employee
+order by job;
