@@ -1,0 +1,9 @@
+select ename, salary, grade
+from employee, salgrade
+where salary between losal and hisal;
+
+
+select e.ename, d.dname, e.salary, s.grade
+from employee e, department d, salgrade s
+where e.dno = d.dno and salary between losal and hisal
+order by salary desc;
