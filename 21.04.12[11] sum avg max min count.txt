@@ -1,0 +1,21 @@
+select sum(salary) as "급여총액",
+        avg(salary) as "급여평균",
+        max(salary) as "최대급여",
+        min(salary) as "최소급여"
+from employee;
+
+
+select sum(commission) as "커미션 총액"
+from employee;
+
+
+select count(commission), sum(commission), avg(commission)
+from employee;
+
+
+select count(*) as "사원의 수"
+from employee;
+
+
+select count(distinct job) as "직업 종류의 개수"
+from employee;
