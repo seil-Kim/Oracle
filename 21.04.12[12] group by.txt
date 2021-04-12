@@ -1,0 +1,14 @@
+select ename, salary
+from employee
+where salary = (select max(salary) from employee);
+
+
+select dno as "부서 번호", avg(salary) as "급여 평균"
+from employee
+group by dno;
+
+
+select dno, job, count(*), sum(salary)
+from employee
+group by dno, job
+order by dno, job;
