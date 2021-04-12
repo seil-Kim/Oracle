@@ -1,0 +1,4 @@
+select e.eno, e.ename, d.dname, dno
+from employee e join department d
+using(dno)
+where e.eno = 7788;
