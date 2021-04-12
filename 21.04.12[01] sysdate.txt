@@ -1,0 +1,37 @@
+select sysdate -1 어제,
+        sysdate 오늘,
+        sysdate +1 내일
+from dual;
+
+
+select round(sysdate, 'cc'),
+        round(sysdate, 'yy'),
+        round(sysdate, 'dd'),
+        round(sysdate, 'Q'),
+        round(sysdate, 'mon'),
+        round(sysdate, 'd')
+from dual;
+
+
+select ename, round(sysdate - hiredate) 근무일수
+from employee;
+
+
+select hiredate, trunc(hiredate, 'month')
+from employee;
+
+
+select ename, sysdate, hiredate, trunc(months_between(sysdate, hiredate)) MONTHS
+from employee;
+
+
+select ename, hiredate, add_months(hiredate, 6)
+from employee;
+
+
+select sysdate, next_day(sysdate, '토요일')
+from dual;
+
+
+select ename, hiredate, last_day(hiredate)
+from employee;
