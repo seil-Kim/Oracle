@@ -1,0 +1,7 @@
+select ename, hiredate
+from employee
+where hiredate = to_date(19810220, 'yyyymmdd');
+
+
+select trunc(sysdate-to_date('21/03/02'))
+from dual;
