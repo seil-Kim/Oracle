@@ -1,0 +1,52 @@
+select max(salary) MAXIMUM, min(salary) MINIMUM, sum(salary) SUM, round(avg(salary)) AVERAGE
+from employee;
+
+
+select job, max(salary) MAXIMUM, min(salary) MINIMUM, sum(salary) SUM, round(avg(salary)) AVERAGE
+from employee
+group by job;
+
+
+select job, count(*)
+from employee
+group by job;
+
+
+select count(distinct manager) AS "COUNT(MANAGER)"
+from employee
+
+
+select max(salary) - min(salary) as "DIFFERENCE"
+from employee;
+
+
+select job, min(salary)
+from employee
+where manager is not null
+group by job
+having min(salary) >= 2000
+order by min(salary) desc;
+
+
+select dno, count(*) as "Number of People",
+    round(avg(salary), 2) as SALARY
+from employee
+group by dno
+order by dno desc;
+
+
+select decode(dno, 10, 'ACCOUNTING', 20, 'RESEARCH', 30, 'SALES', 40, 'OPERATIONS', 'default') as DNAME,
+        decode(dno, 10, 'NEW YORK', 20, 'DALLAS', 30, 'CHICAGO', 40, 'BOSTON', 'default') as LOCATION,
+        count(*) as "Number of People", round(avg(salary)) as SALARY
+from employee
+group by dno;
+
+
+select job, dno,
+    decode(dno, 10, sum(salary)) as "부서 10",
+    decode(dno, 20, sum(salary)) as "부서 20",
+    decode(dno, 30, sum(salary)) as "부서 30",
+    sum(salary) as "총액"
+from employee
+group by job, dno
+order by dno;
