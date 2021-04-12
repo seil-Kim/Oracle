@@ -1,0 +1,10 @@
+select dno, max(salary)
+from employee
+group by dno
+having max(salary) >= 3000;
+
+
+select dno, avg(salary)
+from employee
+group by dno
+having avg(salary) = (select max(avg(salary)) from employee group by dno);
