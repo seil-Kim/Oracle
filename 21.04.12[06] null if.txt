@@ -1,0 +1,2 @@
+select nullif('A', 'A'), nullif('A', 'B')
+from dual;
