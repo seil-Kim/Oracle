@@ -1,0 +1,34 @@
+select sname, svolume, sdate, area
+from areatbl natural join saletbl;
+
+
+select sdate, sname, svolume, area
+from areatbl natural join saletbl
+where substr(sdate, 4,2) like ('05'); 
+
+
+select sdate, sname, svolume, area
+from areatbl natural join saletbl
+where to_char(sdate, 'mm')=5;
+
+
+select area, sum(svolume) as 판매총액
+from areatbl natural join saletbl
+group by area;
+
+
+select sname
+from saletbl natural join areatbl
+where area = '서구' and substr(sdate, 4, 2) like '06';
+
+
+select s.sname
+from saletbl s, areatbl a
+where s.sname = a.sname and a.area like '서구' and to_char(sdate, 'mm')=6;
+
+
+select area, count(svolume) as 판매건수
+from saletbl s, areatbl a
+where s.sname = a.sname
+group by area
+having count(svolume) >= 2;
