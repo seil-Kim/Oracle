@@ -1,0 +1,16 @@
+select e.ename as "사원이름",
+        m.ename as "직속상관이름"
+from employee e, employee m
+where e.manager = m.eno;
+
+
+select m.ename as "직속상관이름",
+    e.ename as "사원이름"
+from employee m, employee e
+where m.eno = e.manager;
+
+
+select m.ename as "직속상관이름", count(e.ename) as "직원수"
+from employee e, employee m
+where e.manager = m.eno
+group by m.ename;
