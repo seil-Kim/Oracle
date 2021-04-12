@@ -1,0 +1,8 @@
+select *
+from employee, department
+where employee.dno = department.dno;
+
+
+select eno, ename, dname
+from employee, department
+where  employee.dno = department.dno and eno = 7788;
