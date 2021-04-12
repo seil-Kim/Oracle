@@ -1,0 +1,8 @@
+select ename, dno,
+        decode(dno, 10, 'accounting',
+                20, 'research',
+                30, 'sales',
+                50, 'operations',
+                'default') as DNAME
+from employee
+order by dno;
