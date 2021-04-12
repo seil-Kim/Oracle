@@ -1,0 +1,7 @@
+select e.eno, e.ename, d.dname, dno
+from employee e natural join department d
+where e.eno = 7788;
+
+
+select eno, ename, dno, dname, salary
+from employee natural join department;
