@@ -1,0 +1,21 @@
+select ename, dno,
+        case when dno = 10 then 'ACCOUNTING'
+            when dno = 20 then 'RESEARCH'
+            when dno = 30 then 'SALES'
+            when dno = 40 then 'OPERATIONS'
+            else 'DEFAULT'
+        end as DNAME
+from employee
+order by dno;
+
+
+select ename, dno,
+        case dno
+            when 10 then 'ACCOUNTING'
+            when 20 then 'RESEARCH'
+            when 30 then 'SALES'
+            when 40 then 'OPERATIONS'
+            else 'DEFAULT'
+        end as DNAME
+from employee
+order by dno;
