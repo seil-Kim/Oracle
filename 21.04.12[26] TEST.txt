@@ -1,0 +1,41 @@
+select e.ename, e.dno, d.dname
+from employee e, department d
+where e.dno = d.dno and e.ename = 'SCOTT';
+
+
+select ename, dname, loc
+from employee e join department d
+on e.dno = d.dno;
+
+
+select dno, job, loc
+from employee inner join department
+using(dno)
+where dno = 10;
+
+
+select distinct dno, job, loc
+from employee join department
+using(dno)
+where dno = 20;
+
+
+select ename, dname, loc
+from employee natural join department
+where commission > 0;
+
+
+select ename, dname
+from employee e, department d
+where e.dno = d.dno and ename like ('%A%');
+
+
+select ename, job, dno, dname
+from employee natural join department
+where loc = 'NEW YORK';
+
+
+select e.ename as "EMPLOYEE", e.eno as "EMP#",
+        m.ename as "MANAGER", m.eno as "MRG#"
+from employee e, employee m
+where e.manager = m.eno;
