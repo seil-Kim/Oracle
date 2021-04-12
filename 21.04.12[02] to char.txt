@@ -1,0 +1,9 @@
+select ename, hiredate,
+        to_char(hiredate, 'yy-mm-dd'),
+        to_char(hiredate, 'd day'),
+        to_char(hiredate, 'ddd day')
+from employee;
+
+
+select ename, salary, to_char(salary, 'L9,999')
+from employee;
