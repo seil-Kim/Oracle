@@ -1,0 +1,13 @@
+select e.ename ||'의 직속 상관은 '||m.ename
+from employee e, employee m
+where e.manager = m.eno;
+
+
+select e.ename ||'의 직속 상관은 '||m.ename
+from employee e, employee m
+where e.manager = m.eno(+);
+
+
+select e.ename ||'의 직속 상관은 '||m.ename
+from employee e left outer join employee m
+on e.manager = m.eno;
