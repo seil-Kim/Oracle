@@ -1,0 +1,3 @@
+select to_number('100000')-to_number('50000')
+from dual;
+
