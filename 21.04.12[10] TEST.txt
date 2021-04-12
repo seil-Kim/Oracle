@@ -1,0 +1,42 @@
+select ename, substr(hiredate, 1, 2) "입사한 년도", substr(hiredate, 4, 2) "입사한 달"
+from employee;
+
+
+select ename, hiredate
+from employee
+where substr(hiredate, 4, 2) like ('04');
+
+
+select eno, ename
+from employee
+where mod(eno, 2) = 0;
+
+
+select hiredate, to_char(hiredate, 'yy/mon/dd dy')
+from employee;
+
+
+select trunc(sysdate - to_date('2021/01/01'))
+from dual;
+
+
+select ename, nvl(manager, 0) manager
+from employee;
+
+
+select ename, job, salary, decode(job, 'ANALYST', salary + 200,
+                                    'SALESMAN', salary + 180,
+                                    'MANAGER', salary + 150,
+                                    'CLERK', salary + 100,
+                                   salary) as "인상된 급여"
+from employee;
+
+
+select ename, job, salary, case job
+                                    when 'ANALYST' then salary + 200
+                                    when 'SALESMAN' then salary + 180
+                                    when 'MANAGER' then salary + 150
+                                    when 'CLERK' then salary + 100
+                                   else salary
+                                   end as "인상된 급여"
+from employee;
