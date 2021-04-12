@@ -1,0 +1,11 @@
+select ename, salary, commission,
+        nvl(commission, 0),
+        salary*12+nvl(commission, 0)
+from employee
+order by job;
+
+
+select ename, salary, commission,
+        nvl2(commission, salary * 12 + commission, salary * 12) 연봉
+from employee
+order by job;
