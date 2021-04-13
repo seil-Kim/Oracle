@@ -1,0 +1,6 @@
+DELETE [FROM] table_name
+WHERE conditions;
+
+
+DELETE dept_copy
+WHERE dno = 10;
