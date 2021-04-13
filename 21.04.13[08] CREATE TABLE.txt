@@ -1,0 +1,28 @@
+CREATE TABLE dept(dno number(2),
+        dname varchar2(14),
+        loc varchar2(13),
+        eno number(4) references employee,
+        primary key(dno));
+
+
+CREATE TABLE BOOKMEMBER(
+    BID number(4),
+    BNAME varchar2(20) not null,
+    TEL varchar2(13),
+    DNO number(2) references dept,
+    primary key(BID));
+
+
+CREATE TABLE EMPLOYEECOPY
+AS SELECT *
+FROM EMPLOYEE;
+
+
+CREATE TABLE empDt
+as select eno, ename, job, dname
+from employee natural join department;
+
+
+CREATE TABLE empDt22 (번호, 이름, 업무, 부서명)
+as select eno, ename, job, dname
+from employee natural join department;
