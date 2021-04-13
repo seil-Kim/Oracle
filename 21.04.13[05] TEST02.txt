@@ -1,0 +1,46 @@
+select ename, salary, dno
+from employee
+where salary in (select min(salary)
+                from employee
+                group by dno);
+
+
+select ename, salary, dno
+from employee
+where (salary, dno) in (select min(salary), dno
+                        from employee
+                        group by dno);
+
+
+select ename, salary, e.dno
+from (select dno, min(salary) as sa
+        from employee
+        group by dno) g, employee e
+where g.dno = e.dno and salary = sa;
+
+
+select eno, ename, job, salary
+from employee
+where salary < any(select salary
+                    from employee
+                    where job = 'ANALYST')
+and job <> 'ANALYST';
+
+
+select ename
+from employee
+where eno in (select eno
+                from employee
+                where manager is null);
+
+
+select eno, ename
+from employee
+where eno not in (select distinct nvl(manager, 0)
+                    from employee);
+
+
+select eno, ename
+from employee
+where eno in (select distinct manager
+                    from employee);
