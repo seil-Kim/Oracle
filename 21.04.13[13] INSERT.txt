@@ -1,0 +1,24 @@
+CREATE TABLE dept_copy
+AS
+SELECT * FROM department WHERE 0 = 1;
+
+
+INSERT INTO dept_copy
+VALUES(10, 'ACCOUNTING', 'NEW YORK');
+
+
+INSERT INTO dept_copy(dno, loc, dname)
+VALUES(20, 'DALLAS', 'RESEARCH');
+
+
+INSERT INTO employeecopy (eno, ename, job, hiredate, dno)
+VALUES(7000, 'CANDY', 'MANAGER', '2012/05/01', 10);
+
+
+INSERT INTO employeecopy (eno, ename, job, hiredate, dno)
+VALUES(7000, 'CANDY', 'MANAGER',
+to_date('120501', 'yy/mm/dd'), 10);
+
+
+INSERT INTO dept_copy
+SELECT * FROM department;
