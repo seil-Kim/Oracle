@@ -1,0 +1,26 @@
+select e.ename as "EMPLOYEE", e.eno as "EMP#",
+        m.ename as "MANAGER", m.eno as "MRG#"
+from employee e, employee m
+where e.manager = m.eno(+)
+order by e.eno desc;
+
+
+select e.ename as 이름, e.dno as 부서번호, m.ename as 동료
+from employee e, employee m
+where e.dno = m.dno and e.ename = 'SCOTT' and m.ename != 'SCOTT';
+
+
+select e.ename as 이름, e.dno as 부서번호, m.ename as 동료
+from employee e, employee m
+where e.dno = m.dno and e.ename = 'SCOTT' and m.ename <> 'SCOTT';
+
+
+select e.ename as ename, e.hiredate as  hiredate
+from employee e, employee m
+where e.hiredate > m.hiredate and m.ename = 'WARD'
+order by hiredate;
+
+
+select e.ename as ename, e.hiredate as hiredate, m.ename as ename_1, m.hiredate as hiredate_1
+from employee e, employee m
+where e.manager = m.eno and e.hiredate < m.hiredate;
