@@ -1,0 +1,31 @@
+select e.ename as 이름, e.salary as 급여
+from employee e, employee m
+where m.ename = 'SCOTT' and m.salary < e.salary;
+
+
+select ename, salary
+from employee
+where salary > (select salary
+                from employee
+                where ename = 'SCOTT');
+
+
+select dno, ename
+from employee
+where ename <> 'SCOTT' and dno = (select dno
+            from employee
+            where ename = 'SCOTT');
+
+
+select ename, job, salary
+from employee
+where salary = (select min(salary)
+                    from employee);
+
+
+select dno, min(salary)
+from employee
+group by dno
+having min(salary) > (select min(salary)
+                from employee
+                where dno = 30);
