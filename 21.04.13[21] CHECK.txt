@@ -1,0 +1,13 @@
+CREATE TABLE emp_second(
+eno NUMBER(4) constraint emp_se_pk primary key,
+ename VARCHAR2(10),
+salary NUMBER(20)
+        constraint emp_se_check_min CHECK(salary > 0));
+
+
+insert into emp_second values(
+    11, 'aa', 1000);
+    
+
+insert into emp_second values(
+    12, 'bb', -1000);
