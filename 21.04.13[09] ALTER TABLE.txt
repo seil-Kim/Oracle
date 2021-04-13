@@ -1,0 +1,10 @@
+ALTER TABLE BOOKMEMBER
+        ADD(birth DATE);
+
+
+ALTER TABLE dept
+        MODIFY dname varchar2(30);
+
+
+alter table dept
+drop column dname;
