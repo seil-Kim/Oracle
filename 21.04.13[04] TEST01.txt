@@ -1,0 +1,34 @@
+select ename, job
+from employee
+where job = (select job
+            from employee
+            where eno = 7788);
+
+
+select ename, job
+from employee
+where salary > (select salary
+                from employee
+                where eno = 7499);
+
+
+select ename, job, salary
+from employee
+where salary = (select min(salary)
+                    from employee);
+
+
+select job, round(avg(salary))
+from employee
+group by job
+having round(avg(salary),1) = (select min(round(avg(salary),1))
+                from employee
+                group by job);
+
+
+select job, round(avg(salary))
+from employee
+group by job
+having avg(salary) <= all(select avg(salary)
+                from employee
+                group by job);
