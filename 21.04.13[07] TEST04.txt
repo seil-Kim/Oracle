@@ -1,0 +1,21 @@
+select eno, ename, salary
+from employee
+where salary > (select avg(salary)
+                from employee)
+      and dno in(select dno
+                from employee
+                where ename like ('%M%'));
+
+
+select job, avg(salary)
+from employee
+group by job
+having avg(salary) = (select min(avg(salary))
+                from employee
+                group by job);
+
+
+select ename, job
+from employee
+where eno in(select manager
+            from employee);
