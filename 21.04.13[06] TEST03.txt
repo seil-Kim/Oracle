@@ -1,0 +1,47 @@
+select ename, hiredate
+from employee
+where dno = (select dno
+                from employee
+                where ename = 'BLAKE')
+and ename <> 'BLAKE';
+
+
+select eno, ename
+from employee
+where salary > (select round(avg(salary))
+                from employee);
+
+
+select eno, ename
+from employee
+where salary > (select avg(salary)
+                from employee)
+order by salary;
+
+
+select eno, ename
+from employee
+where dno in (select dno
+                from employee
+                where ename like('%K%'));
+
+
+select ename, dno, job
+from employee
+where dno = (select dno
+                from department
+                where loc = 'DALLAS');
+
+
+select ename, salary
+from employee
+where manager in (select eno
+                    from employee
+                    where ename = 'KING');
+
+
+select dno, ename, job
+from employee
+where dno in (select dno
+                from department
+                where dname = 'RESEARCH');
