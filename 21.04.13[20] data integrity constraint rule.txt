@@ -1,0 +1,21 @@
+CREATE TABLE customer(
+            id varchar2(20) not null,
+            pwd varchar2(20) not null,
+            name varchar2(20) not null,
+            phone varchar2(30),
+            address varchar2(100));
+            
+INSERT INTO customer
+VALUES(null, null, null, '010-111-1111', 'seoul');
+
+CREATE TABLE customer(
+            id varchar2(20) unique,
+            pwd varchar2(20) not null,
+            name varchar2(20) not null,
+            phone varchar2(30),
+            address varchar2(100));
+
+
+select table_name, constraint_name
+from user_constraints
+where table_name IN( 'CUSTOMER' );
