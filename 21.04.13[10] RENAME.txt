@@ -1,0 +1,1 @@
+rename dept to emp20;
