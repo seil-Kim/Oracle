@@ -1,0 +1,6 @@
+UPDATE dept_copy
+set dname = 'PROGRAMMING'
+WHERE dno = 10;
+
+update dept_copy
+set dname = 'HR';
