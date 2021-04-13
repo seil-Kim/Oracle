@@ -1,0 +1,10 @@
+create table emp_s
+as
+select * from employee;
+create or replace view v_emp_chk
+as
+select eno, ename, dno, job
+from emp_s;
+
+insert into v_emp_chk
+values(9000, '김주현', 30, '회사원');
