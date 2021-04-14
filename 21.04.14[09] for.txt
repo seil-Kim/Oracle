@@ -1,0 +1,92 @@
+set serveroutput on;
+
+declare
+    dan number := 2;
+begin
+    for i in 1..9 loop
+        dbms_output.put_line(dan||'*'||i||'='||(dan*i));
+    end loop;
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    
+begin
+    for dan in 2..9 loop
+        for i in 1..9 loop
+            dbms_output.put_line(dan||'*'||i||'='||(dan*i));
+        end loop;
+    end loop;
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    
+begin
+            dbms_output.put_line('');
+    for dan in 2..9 loop
+        for i in 1..9 loop
+           
+            dbms_output.put(dan||'*'||i||'='||(dan*i)||'    ');
+        end loop;
+        dbms_output.put_line('');
+    end loop;
+end;
+/
+
+
+SET SERVEROUTPUT ON 
+declare
+begin
+    for k in 1..9 loop --for 문 범위 지정. 중첩도 가능.
+        for i in 2..9 loop
+            dbms_output.put(k||'*'||i||'='||(k*i)||'    ');
+        end loop;
+        dbms_output.put_line(' ');
+    end loop;
+end;
+/
+
+
+SET SERVEROUTPUT ON;
+BEGIN
+    FOR J IN 1..9 LOOP
+        DBMS_OUTPUT.PUT_LINE('');
+        FOR I IN 2..9 LOOP
+            DBMS_OUTPUT.PUT(I||' * '||J||' = '||(I*J)||'    ');
+        END LOOP;
+    END LOOP;
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+BEGIN
+    FOR N IN 2..9 LOOP
+    DBMS_OUTPUT.PUT('   '||N||'단'||'        ');
+    END LOOP;
+    FOR J IN 1..9 LOOP
+        DBMS_OUTPUT.PUT_LINE('');
+        FOR I IN 2..9 LOOP
+            DBMS_OUTPUT.PUT(I||' * '||J||' = '||(I*J)||'    ');
+        END LOOP;
+    END LOOP;
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+DECLARE
+    DAN NUMBER := 2;
+BEGIN
+    FOR I IN REVERSE 1..9 LOOP
+        DBMS_OUTPUT.PUT_LINE(DAN||'*'||I||'='||(DAN*I));
+    END LOOP;
+END;
+/
