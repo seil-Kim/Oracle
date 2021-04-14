@@ -1,0 +1,13 @@
+set serveroutput on;
+
+declare
+    dan number := 2;
+    i number := 1;
+begin
+    loop
+        dbms_output.put_line(dan||'*'||i||'='||(dan*i));
+        i := i+1;
+        exit when i>9;
+    end loop;
+end;
+/
