@@ -1,0 +1,52 @@
+create or replace trigger insert_trigger
+    after insert
+    on dept_original
+    for each row
+begin
+    insert into dept_copy1
+        values(:new.dno, :new.dname, :new.loc, sysdate);
+end;
+/
+
+insert into dept_original
+values(60, 'programming', 'Daegu');
+
+
+create or replace trigger delete_trigger
+    after delete
+    on dept_original
+    for each row
+begin
+    insert into dept_copy1
+        values(:old.dno, :old.dname, :old.loc, sysdate);
+end;
+/
+
+delete dept_original where dno = 20;
+
+
+drop table dept_copy1;
+
+create table dept_copy1(
+    dno number(2),
+    dname varchar(14),
+    loc varchar(13),
+    mag varchar2(20),
+    insertdate date);
+
+
+create or replace trigger dept_trigger
+    after insert or delete
+    on dept_original
+    for each row
+begin
+    if inserting then
+        insert into dept_copy1
+            values(:new.dno, :new.dname, :new.loc, '삽입', sysdate);
+    end if;
+    if deleting then
+        insert into dept_copy1
+            values(:old.dno, :old.dname, :old.loc, '삭제', sysdate);
+    end if;
+end;
+/  
