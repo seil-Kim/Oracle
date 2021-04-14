@@ -1,0 +1,35 @@
+create table dep_t
+as
+select * from department;
+
+create table tri_test2(
+    mes varchar(20),
+    d_dte date);
+    
+insert into dep_t values(77, 'Seoul', 'Kang');
+
+
+create or replace TRIGGER tr1
+    after update
+    on dep_t
+begin
+    insert into tri_test2
+        values('update', sysdate);
+end;
+/
+
+update dep_t set dno = 66 where dno = 77;
+
+select *
+from tri_test2;
+
+
+create table dept_original
+as
+select * from department;
+
+create table dept_copy(
+    dno number(2),
+    dname varchar(14),
+    loc varchar(13),
+    insertdate date);
