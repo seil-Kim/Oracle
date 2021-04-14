@@ -1,0 +1,14 @@
+<System>
+create role roletest03;
+grant create session, create table, create view to roletest03;
+
+<Hr>
+grant select on car_tbl to roletest03; --권한 부여
+
+<System>
+create user user02 IDENTIFIED by pass2;
+grant roletest03 to user02; --user 생성 후, 롤 부여
+
+<User02>
+select *
+from hr.car_tbl;
