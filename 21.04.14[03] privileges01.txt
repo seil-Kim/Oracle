@@ -1,0 +1,22 @@
+<System>
+create user usertest01
+identified by pass1;
+
+grant create session to usertest01;
+
+grant create table to usertest01;
+
+select * from dba_sys_privs
+where grantee = 'USERTEST01';
+
+select username, default_tablespace
+from dba_users
+where username in 'USERTEST01';
+
+alter user usertest01 default tablespace users;  --영역을 줘야 usertest01에서 table 생성 가능
+alter user usertest01 quota 2m on users;
+
+<Usertest01>
+create table sampletbl(
+    memo varchar2(50)
+);
