@@ -1,0 +1,55 @@
+set serveroutput on /*출력이 보이도록 반드시 선언*/
+
+begin
+    dbms_output.put_line('Welcome to Oracle');
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    v_no number(4);
+    v_name employee.ename%type;
+    
+begin
+    v_no := 7788;
+    v_name := 'scott';
+    dbms_output.put_line('사원번호  사원이름');
+    dbms_output.put_line('----------------');
+    dbms_output.put_line(v_no ||'     '||v_name);
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    v_no employee.eno%type;
+    v_name employee.ename%type;
+begin
+    select eno, ename into v_no, v_name
+        from employee
+        where ename = 'SCOTT';
+        
+    dbms_output.put_line('사번'||' '||'이름');
+    dbms_output.put_line('----------------');
+    dbms_output.put_line(v_no ||'  '||v_name);
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    vemp employee%rowtype;
+begin
+    select * into vemp
+        from employee
+        where ename = 'SCOTT';
+        
+    dbms_output.put_line('사번'||' '||'이름'||' '||'입사일');
+    dbms_output.put_line('-----------------------');
+    dbms_output.put_line(vemp.eno ||'  '||vemp.ename||' '||vemp.hiredate);
+end;
+/
