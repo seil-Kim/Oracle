@@ -1,0 +1,26 @@
+SET SERVEROUTPUT ON;
+DECLARE
+    DAN NUMBER := 2;
+    I NUMBER := 1;
+BEGIN
+    WHILE I <= 9 LOOP
+        DBMS_OUTPUT.PUT_LINE(DAN||'*'||I||'='||(DAN*I));
+        I := I+1;
+    END LOOP;
+END;
+/
+
+
+set serveroutput on;
+declare
+    v_dept department%rowtype;
+    cursor c1 is select * from department;
+begin
+    dbms_output.put_line('부서번호   부서명     지역명');
+    dbms_output.put_line('--------------------------');
+    for v_dept in c1 loop
+        exit when c1%notfound;
+        dbms_output.put_line(v_dept.dno||'       '||v_dept.dname||'    '||v_dept.loc);
+    end loop;
+end;
+/
