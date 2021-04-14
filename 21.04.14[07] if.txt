@@ -1,0 +1,37 @@
+declare
+    v_no employee.eno%type;
+    v_name employee.ename%type;
+    v_dno employee.dno%type;
+    v_dname varchar2(20) := null;
+begin
+    select eno, ename, dno into v_no, v_name, v_dno
+        from employee where ename = 'SCOTT';
+    if(v_dno = 10) then
+        v_dname := '총무부';
+    elsif(v_dno = 20) then
+        v_dname := '판매부';
+    elsif(v_dno = 30) then
+        v_dname := '경리부';
+    else
+        v_dname := '관리부';
+    end if;
+    dbms_output.put_line(v_no||'    '||v_name||'    '||v_dname);
+end;
+/
+
+set serveroutput on;
+
+declare
+    v_no employee.eno%type;
+    v_name employee.ename%type;
+    v_dname department.dname%type;
+begin 
+    select eno, ename, dname into v_no, v_name, v_dname
+        from employee natural join department
+        where ename = 'SCOTT';
+        
+        DBMS_OUTPUT.put_line('사번'||'    '||'이름'||'  '||'부서명');
+        DBMS_OUTPUT.put_line('-------------------------------------');
+        DBMS_OUTPUT.put_line(v_no||'    '||v_name||'    '||v_dname);
+end;
+/
