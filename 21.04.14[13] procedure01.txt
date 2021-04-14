@@ -1,0 +1,35 @@
+create or replace procedure sp_salary
+is
+    v_salary employee.salary%type;
+begin
+    select salary into v_salary
+        from employee
+        where ename = 'SCOTT';
+    dbms_output.put_line('SCOTT의 급여 : '||v_salary);
+end;
+/
+
+execute sp_salary;
+
+
+select name, text from user_source
+where name like('%SP_SALARY%');
+
+
+DROP PROCEDURE SP_SALARY;
+
+------------------------------------------
+
+create or replace procedure sp_salary_ename(
+    v_ename in employee.ename%type)
+is
+    v_salary employee.salary%type;
+begin
+    select salary into v_salary
+        from employee
+        where ename = v_ename;
+    dbms_output.put_line(v_ename||'의 급여 : '||v_salary);
+end;
+/
+
+execute sp_salary_ename('KING');
