@@ -1,0 +1,24 @@
+<Hr>
+grant select on hr.car_tbl to usertest01; --usertest01에게 car_tbl 권한을 준다.
+
+<System>
+revoke create table from usertest01;
+
+<Hr>
+grant select on employee to public; --공용으로 employee 쓰라는 말.
+
+<Usertest01>
+select *
+from hr.employee;
+
+<System>
+create user usertest02
+identified by pass1;
+
+grant create session to usertest02;
+
+grant create table to usertest02;
+
+<Usertest02>
+select *
+from hr.employee;
