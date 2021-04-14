@@ -1,0 +1,16 @@
+create or replace function fn_salary_ename(
+    v_ename in employee.ename%type)
+    return number
+is
+    v_salary number;
+begin
+    select salary into v_salary
+    from employee
+    where ename = v_ename;
+    return v_salary;
+end;
+/
+
+variable v_salary number;
+execute :v_salary := fn_salary_ename('SCOTT');
+print v_salary;
