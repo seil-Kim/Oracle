@@ -1,0 +1,15 @@
+create or replace procedure sp_salary_ename2(
+    v_ename in employee.ename%type,
+    v_salary out employee.salary%type)
+is
+begin
+    select salary into v_salary
+        from employee
+        where ename = v_ename;
+    dbms_output.put_line(v_ename||'의 급여 : '||v_salary);
+end;
+/
+
+variable v_salary number;
+execute sp_salary_ename2('SCOTT', :v_salary);
+print v_salary;
