@@ -1,0 +1,17 @@
+create table dept_s as select * from department where 0=1;
+create SEQUENCE dno_seq INCREMENT BY 10 START WITH 10; --시퀀스 만들기, 시작점이 10이고  10씩 건너뛰어 만든다.
+select * from user_sequences where sequence_name = 'dno_seq';
+
+select dno_seq.nextval
+from dual;
+
+select dno_seq.currval
+from dual;
+
+insert into dept_s
+values(dno_seq.nextval, 'ACCOUNTING', 'NEW YORK');
+
+select *
+from dept_s;
+
+drop sequence dno_seq;
