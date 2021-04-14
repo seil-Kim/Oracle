@@ -1,0 +1,31 @@
+set serveroutput on;
+declare
+    vemp employee%rowtype;
+    vdname varchar2(14);
+begin
+    select * into vemp
+    from employee
+    where ename = 'KING';
+    dbms_output.put_line('이름    부서명');
+    dbms_output.put_line('-----------------');
+    dbms_output.put_line(vemp.eno||'    '||vemp.ename||'    '||vdname);
+end;
+/
+
+
+set serveroutput on;
+declare
+    v_emp employee%rowtype;
+    cursor c1
+    is
+    select * from employee
+    where commission is not null;
+begin
+    dbms_output.put_line('사번    이름  급여');
+    dbms_output.put_line('------------------');
+    for v_emp in c1 loop
+        exit when c1%notfound;
+        dbms_output.put_line(v_emp.eno||'   '||v_emp.ename||'   '||v_emp.salary);
+    end loop;
+end;
+/
