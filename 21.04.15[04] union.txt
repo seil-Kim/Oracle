@@ -1,0 +1,33 @@
+create table emp1
+as
+select * from employee;
+
+create table emp2
+as
+select * from employee
+where dno = 20;
+
+create table emp3
+as
+select * from employee
+where dno = 30;
+
+
+select ename, dno
+from emp2
+union
+select ename, dno
+from emp3;
+
+
+select ename, dno
+from emp1
+union
+select ename, dno
+from emp3; --중복된 것 없어짐 결국 emp1이 됨.
+
+select ename, dno
+from emp1
+union all
+select ename, dno
+from emp3; --union all을 써서 중복된 것도 나옴.
