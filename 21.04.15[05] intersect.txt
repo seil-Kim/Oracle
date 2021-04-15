@@ -1,0 +1,5 @@
+select ename, dno
+from emp1
+intersect
+select ename, dno
+from emp2;  --중복된 것만 나와. 따라서 emp2만 나옴.
