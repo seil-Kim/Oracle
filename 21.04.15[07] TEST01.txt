@@ -1,0 +1,52 @@
+create table BUYER(
+    BID varchar2(10) CONSTRAINT PK_BID PRIMARY KEY,
+    BNAME varchar2(20),
+    BTEL varchar(13),
+    BADDR varchar2(50));
+    
+INSERT INTO BUYER VALUES
+('HONG', '홍길동', '010-1111-1111', '서울 서초구');
+INSERT INTO BUYER VALUES
+('JUNG', '정미자', '010-2222-2222', '대구 동구');
+INSERT INTO BUYER VALUES
+('LEE', '이길순', '02-333-3333', '부산 남구');
+INSERT INTO BUYER VALUES
+('PARK', '박아름', '010-2342-2342', '서울 동대문구');
+
+
+create table TRAN(
+    TDATE date,
+    PNO varchar2(10),
+    TCNT number(10),
+    BID varchar2(10) CONSTRAINT FK_BID REFERENCES BUYER,
+    TG varchar2(1));
+    
+INSERT INTO TRAN VALUES
+('19/02/05', 'N01', '5', 'HONG', '1');
+INSERT INTO TRAN VALUES
+('19/02/20', 'E04', '3', 'JUNG', '2');
+INSERT INTO TRAN VALUES
+('19/02/20', 'S03', '3', 'PARK', '1');
+INSERT INTO TRAN VALUES
+('19/02/20', 'N01', '7', 'HONG', '2');
+INSERT INTO TRAN VALUES
+('19/03/10', 'N01', '10', 'JUNG', '2');
+INSERT INTO TRAN VALUES
+('19/03/15', 'E04', '2', 'HONG', '1');
+
+
+create table product (
+    PNO varchar2(3),
+    PNAME varchar2(20),
+    PRICE number(10),
+    PCNT number(10));
+insert into product values
+('N01','노트',2000,500);
+insert into product values
+('P02','연필',500,250);
+insert into product values
+('S03','샤프',3000,200);
+insert into product values
+('E04','지우개',200,180);
+insert into product values
+('T05','테이프',1500,150);
