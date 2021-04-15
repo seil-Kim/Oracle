@@ -1,0 +1,13 @@
+select ename, dno
+from emp1
+minus
+select ename, dno
+from emp2; --emp1 - emp2.
+
+
+select ename
+from emp1
+minus
+select ename
+from emp1
+where ename like '%K%';
