@@ -1,0 +1,12 @@
+select dno, ename, salary,
+    first_value(ename)
+    over(partition by dno order by salary desc) dept_first
+from employee;
+
+
+select dno, ename, salary,
+    last_value(ename)
+    over(partition by dno order by salary desc
+        rows between current row and unbounded following)
+    as dept_last
+from employee;
