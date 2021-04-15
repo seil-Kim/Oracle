@@ -1,0 +1,46 @@
+select eno, ename, salary,
+    RANK() over(order by salary desc) 급여순위
+from employee;
+
+
+select eno, ename, salary,
+    DENSE_RANK() over(order by salary desc) 급여순위
+from employee;
+
+
+select eno, ename, salary,
+    ROW_NUMBER() over(order by salary desc) 급여순위
+from employee;
+
+
+select *
+from(select row_number() over(ORDER by salary desc)
+            as RNUM,
+            ename, salary
+    from employee)
+where RNUM BETWEEN 5 and 10;
+
+
+select rownum, ename, salary
+    from employee;
+
+
+select rownum, ename, salary
+    from employee
+    order by salary;
+
+
+select rownum, ename, salary
+from(select ename, salary
+    from employee
+    order by salary desc)
+where rownum <= 5;
+
+
+select*
+from(select rownum as rnum, E.*
+    from(select ename, salary
+         from employee
+        order by salary desc)E
+    )
+where rnum between 5 and 10;
