@@ -1,0 +1,32 @@
+SELECT TDATE, PNAME, TCNT,
+        DECODE(TG, 1,'카드',
+                    2,'현금')결재수단
+FROM BUYER NATURAL JOIN TRAN NATURAL JOIN PRODUCT
+WHERE BNAME = '홍길동';
+
+
+SELECT TDATE, PNAME, TCNT,
+    DECODE(TG, '1', '카드',
+                '2', '현금') AS 결재수단
+FROM TRAN NATURAL JOIN PRODUCT
+WHERE BID = (SELECT BID
+            FROM BUYER
+            WHERE BNAME = '홍길동')
+ORDER BY TDATE;
+
+
+SELECT PNAME, PRICE * PCNT AS 총금액
+FROM PRODUCT
+WHERE PRICE * PCNT >= (SELECT MAX(PRICE * PCNT)
+                        FROM PRODUCT);
+
+
+SELECT BNAME
+FROM BUYER
+WHERE BID = ((SELECT BID
+            FROM TRAN
+            WHERE TO_CHAR(TDATE, 'MM')=2)
+            MINUS
+            (SELECT BID
+            FROM TRAN
+            WHERE TO_CHAR(TDATE, 'MM')=3));
