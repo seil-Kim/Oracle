@@ -1,0 +1,36 @@
+select manager, ename, salary,
+    sum(salary) over(partition by manager) as MGR_SUM
+from employee;
+
+
+select manager, ename, salary,
+    sum(salary) over(partition by manager order by salary
+    rows between unbounded preceding and current row) as MGR_SUM
+from employee;
+
+
+select manager, ename, salary,
+    sum(salary) over(partition by manager order by salary
+    rows unbounded preceding) as MGR_SUM
+from employee;
+
+
+select manager, eno, ename, salary,
+    ROUND(AVG(salary)
+    over(PARTITION BY MANAGER ORDER BY ENO
+    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING))
+    AS MGR_AVG
+from employee;
+
+
+select ename, salary,
+    count(*) over(order by salary
+    range between 50 preceding and 150 following)
+    as SAL_CNT
+from employee;
+
+
+select dno, ename, salary,
+    max(salary) over(partition by dno) max,
+    min(salary) over(partition by dno) min
+from employee;
