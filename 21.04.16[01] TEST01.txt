@@ -1,0 +1,39 @@
+set serveroutput on;
+
+declare
+    vpro product%rowtype;
+    cursor c1
+    is
+    select*from product
+    where pcnt >= 200
+    order by pcnt desc;
+begin
+    open c1;
+    loop
+        fetch c1 into vpro;
+        exit when c1%notfound;
+        dbms_output.put_line(vpro.pno||'    '||vpro.pname||'    '||vpro.price||'  '||vpro.pcnt);
+    end loop;
+    close c1;
+end;
+/
+
+
+set serveroutput on;
+
+declare
+    v_pro product%rowtype;
+    cursor c1
+    is
+    select*from product
+    where pcnt >= 200
+    order by pcnt desc;
+begin
+    dbms_output.put_line('상품번호  상품명 가격  보유개수');
+    dbms_output.put_line('-----------------------------');
+    for v_pro in c1 loop    
+        exit when c1%notfound;
+        dbms_output.put_line(v_pro.pno||'    '||v_pro.pname||'    '||v_pro.price||'  '||v_pro.pcnt);
+    end loop;
+end;
+/
