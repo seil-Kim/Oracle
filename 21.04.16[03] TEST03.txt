@@ -1,0 +1,32 @@
+create or replace procedure tran_delete(
+    p_no in tran.pno%type,
+    b_id in tran.bid%type)
+is
+begin
+    delete tran
+    where pno = p_no and bid = b_id;
+    commit;
+end;
+/    
+    
+execute tran_delete('p02', 'HONG');
+
+select * from tran;
+
+
+create or replace procedure product_list
+is
+    v_pro product%rowtype;
+    cursor c1 is select * from product;
+begin
+    dbms_output.put_line('상품코드'||'  '||'상품명'||'    '||'상품가격');
+    dbms_output.put_line('-------------------------------------------');
+    for v_pro in c1
+    loop
+        exit when c1%notfound;
+        dbms_output.put_line(v_pro.pno||'   '||v_pro.pname||'   '||v_pro.price);
+    end loop;
+end;
+/
+
+execute product_list;
