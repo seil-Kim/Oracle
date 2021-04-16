@@ -1,0 +1,23 @@
+drop table tran_trigger_tbl;
+create table tran_trigger_tbl(
+    tdate date,
+    pno varchar(3),
+    tcnt number,
+    bid varchar(10),
+    tg varchar(1),
+    deldate date);
+
+
+create or replace trigger tran_delete_trigger
+    after delete
+    on tran
+    for each row
+begin
+    insert into tran_trigger_tbl
+        values(:old.tdate, :old.pno, :old.tcnt, :old.bid, :old.tg, sysdate);
+end;
+/
+
+delete tran where pno = 'E04' and bid = 'HONG';
+
+select * from tran;
