@@ -1,0 +1,174 @@
+/* 1번 */
+create user test1
+identified by pass1;
+
+/* 2번 */
+grant create session to test1;
+grant create table to test1;
+
+/* 3번 */
+select * from dba_sys_privs
+where grantee = 'TEST1';
+
+select username, default_tablespace
+from dba_users
+where username in 'TEST1';
+
+alter user test1 default tablespace users;
+alter user test1 quota 2m on users;
+
+/* 4번 */
+set serveroutput on;
+declare
+    v_emp book%rowtype;
+    cursor c1
+    is
+    select title, writer, publish, price,
+    DENSE_RANK() over(order by price desc) 
+    from book;
+begin
+    dbms_output.put_line('title writer  publisb price   rank');
+    dbms_output.put_line('-------------------------------------');
+    loop
+        fetch c1 into v_emp;
+        exit when c1%notfound;
+        dbms_output.put_line(v_emp.title||'   '||v_emp.writer||'    '||v_emp.publish||
+        '   '||v_emp.price||' '||v_emp.DENSE_RANK());
+    end loop;
+end; 
+/
+/* 5번 */
+declare
+    v_no employee.eno%type;
+    v_name employee.ename%type;
+    v_dno employee.dno%type;
+    v_dname varchar2(20) := null;
+begin
+    select eno, ename, dno into v_no, v_name, v_dno
+        from employee where ename = 'SCOTT';
+    if(v_dno = 1) then
+        v_dname := '총무부';
+    elsif(v_dno = 2) then
+        v_dname := '판매부';
+    elsif(v_dno = 3) then
+        v_dname := '경리부';
+    else
+        v_dname := '관리부';
+    end if;
+    dbms_output.put_line(v_no||'    '||v_name||'    '||v_dname);
+end;
+/
+/* 6번 */
+set serveroutput on;
+
+declare
+    vboo book%rowtype;
+begin
+    select * into vboo
+        from book
+        where title = 'HTML';
+        
+    dbms_output.put_line('도서명'||' '||'저자'||' '||'출판사');
+    dbms_output.put_line('-----------------------');
+    dbms_output.put_line(vboo.title ||'  '||vboo.writer||' '||vboo.publish);
+end;
+/
+
+/* 7번 */
+set serveroutput on;
+
+declare
+    v_no employee.eno%type;
+    v_name employee.ename%type;
+    v_dname department.dname%type;
+begin 
+    select eno, ename, dname into v_no, v_name, v_dname
+        from employee natural join department
+        where ename = '정하림';
+        
+        DBMS_OUTPUT.put_line('사번'||'    '||'이름'||'  '||'부서명');
+        DBMS_OUTPUT.put_line('-------------------------------------');
+        DBMS_OUTPUT.put_line(v_no||'    '||v_name||'    '||v_dname);
+end;
+/
+
+/* 8번 */
+SET SERVEROUTPUT ON;
+BEGIN
+    FOR N IN 2..5 LOOP
+    DBMS_OUTPUT.PUT('   '||N||'단'||'        ');
+    END LOOP;
+    FOR J IN 1..10 LOOP
+        DBMS_OUTPUT.PUT_LINE('');
+        FOR I IN 2..5 LOOP
+            DBMS_OUTPUT.PUT(I||' * '||J||' = '||(I*J)||'    ');
+        END LOOP;
+    END LOOP;
+END;
+/
+
+/* 9번 */
+create or replace procedure book_search(
+    v_bcd in book.bcd%type)
+is
+    vb book%rowtype;
+    cursor c1
+    is
+    select title, writer, price
+    from book
+    where bcd = v_bcd;
+begin
+    dbms_output.put_line('도서명   저자  가격');
+    dbms_output.put_line('-------------------');
+    for vb in c1
+    loop
+        exit when c1%notfound;
+        dbms_output.put_line(vb.title||' '||vb.writer||'  '||vb.price);
+    end loop;
+end;
+/
+
+execute book_search('203');
+
+/* 10번 */
+create or replace function fn_price_title(
+    v_title in book.title%type)
+    return number
+is
+    v_price number;
+begin
+    select price into v_price
+    from book
+    where title = v_title;
+    return v_price;
+end;
+/
+
+variable v_price number;
+execute :v_price := fn_price_title('HTML');
+print v_price;
+
+/* 11번 */
+create or replace trigger book_trigger
+    after insert
+    on book
+    for each row
+begin
+    insert into book_trigger
+        values(:new.bcd, :new.title, :new.tdate, sysdate);
+end;
+/
+
+insert into book_trigger
+values(103, 2, ‘JAVA’, ‘홍하나’, ‘한국출판’, 25000);
+values(104, 1, ‘한국여행’, ‘여의주’, ‘한국출판’, 20000);
+
+/* 12번 */
+desc user_source;
+
+select distinct(type)
+from user_source;
+
+select *
+from user_source
+where type = 'procedure';
