@@ -1,0 +1,21 @@
+create or replace procedure tran_search(
+    t_date tran.tdate%type)
+is
+    vt tran%rowtype;
+    cursor c1
+    is
+    select tdate, pname, tcnt
+    from tran natural join product
+    where tdate = t_date;
+begin
+    dbms_output.put_line('일자'||' '||'제품명'||'   '||'갯수');
+    dbms_output.put_line('---------------------------------');
+    for vt in c1
+    loop
+        exit when c1%notfound;
+        dbms_output.put_line(vt.tdate||'    '||vt.pname||'  '||vt.tcnt);
+    end loop;
+end;
+/
+
+execute tran_search('19/02/20');
