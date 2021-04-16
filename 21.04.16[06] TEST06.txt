@@ -1,0 +1,27 @@
+create table product_trigger_tbl(
+    triger_msg varchar(10),
+    pno varchar(3),
+    pname varchar(20),
+    price number(10),
+    pcnt number(10),
+    triger_date date);
+
+create or replace trigger product_trigger
+    after insert or update
+    on product
+    for each row
+begin
+    if inserting then
+        insert into product_trigger_tbl
+        values('insert', :new.pno, :new.pname, :new.price, :new.pcnt, sysdate);
+    elsif updating then
+        insert into product_trigger_tbl
+        values('update', :old.pno, :old.pname, :old.price, :old.pcnt, sysdate);
+    end if;
+end;
+/
+
+insert into product values('A01','볼펜',5000,200);
+update product set price=300 where pno='E04';
+
+select * from product;
