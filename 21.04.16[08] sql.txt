@@ -1,0 +1,172 @@
+/*1번, 2번*/
+
+drop table BOOK;
+
+create table BOOK(
+    BCD varchar(3) constraint pk_BCD primary key,
+    FCD varchar(3) constraint fk_FCD references FIELD,
+    TITLE varchar2(30) not null,
+    WRITER varchar2(30) not null,
+    PUBLISH varchar2(30) not null,
+    PRICE numeric(20) not null);
+    
+insert into BOOK
+values('101', '1', '하늘과 바다', '김나나', '하나출판', '15000');
+insert into BOOK
+values('201', '2', 'HTML', '정하림', '미디출판', '30000');
+insert into BOOK
+values('102', '1', '생각하는 나', '이기동', '세림출판', '20000');
+insert into BOOK
+values('202', '2', 'PHP', '정하림', '미디출판', '25000');
+insert into BOOK
+values('301', '3', '전기와 전자', '한가인', '하나출판', '20000');
+insert into BOOK
+values('401', '4', '이것만은 알자', '정하림', '세한출판', '18000');
+insert into BOOK
+values('203', '2', '자바 프로그래밍', '황주성', '미디출판', '35000');
+
+drop table FIELD;
+
+create table FIELD(
+    FCD varchar(3) constraint pk_FCD primary key,
+    FNAME varchar2(30) not null);
+
+insert into FIELD
+values('1', '문학');
+insert into FIELD
+values('2', 'IT');
+insert into FIELD
+values('3', '과학');
+insert into FIELD
+values('4', '철학');
+
+drop table TRADE;
+
+create table TRADE(
+    TDATE date not null,
+    BCD varchar(3) constraint fk_BCD references BOOK,
+    BCNT numeric(10) not null);
+    
+insert into TRADE
+values('19/03/12', '101', '1');
+insert into TRADE
+values('19/03/12', '202', '1');
+insert into TRADE
+values('19/03/22', '203', '2');
+insert into TRADE
+values('19/03/22', '201', '1');
+insert into TRADE
+values('19/03/22', '202', '3');
+insert into TRADE
+values('19/03/25', '102', '1');
+insert into TRADE
+values('19/03/25', '101', '2');
+
+select *
+from book;
+
+select *
+from field;
+
+select *
+from trade;
+
+/* 3번 */
+commit;
+
+/* 4번 */
+delete trade
+where tdate = '19/03/12';
+
+/* 5번 */
+rollback;
+
+/* 6번 */
+select writer
+from book;
+
+/* 7번 */
+select title,writer
+from book
+where publish = '미디출판';
+
+/* 8번 */
+select title, writer, publish
+from book
+where price >= 20000;
+
+/* 9번 */
+select title, writer
+from book
+where bcd = 102;
+
+/* 10번 */
+select tdate,count(tdate) as 거래건수
+from trade
+group by tdate;
+
+/* 11번 */
+select publish, fname, title
+from book natural join field
+order by publish;
+
+/* 12번 */
+/*select writer, title
+from book, (select max(bcnt)
+            from trade
+            where tdate = '19/03/22');*/
+select b.writer, b.title
+from book b join title t
+on b.bcd = t.bcd
+where max(bcnt);
+
+            
+/* 13번 */
+select sum(price * bcnt)
+from book natural join trade
+where fcd = 2;
+
+/* 14번 */
+select title, writer
+from book natural join trade
+where bcnt >= 2;
+
+/* 15번 */
+select title, writer, publish, price
+from book natural join field
+where fname = '문학'
+order by price;
+16은 bcd랑 bcnt랑 웨어 조건에 넣은게
+안맞아서 그런거같고
+17은 그룹함수 써서 그런듯
+
+/* 16번 */
+select title, writer, publish
+from book
+where bcd not in(select bcnt
+                from trade
+              where tdate between '19/03/15' and '19/03/25');
+
+/* 17번 */
+select a.title, a.writer, a.publish, a.price
+from book a, book b
+where a.price = max(b.price);
+
+/* 18번 */
+select count(title)
+from book
+where writer = '정하림';
+
+/* 19번 */
+create index idx_fname
+on field(fname);
+
+/* 20번 */
+create table book2
+as
+select *
+from book
+where publish = '미디출판';
+
+select *
+from book2;
