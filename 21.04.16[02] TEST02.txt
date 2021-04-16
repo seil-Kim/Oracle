@@ -1,0 +1,34 @@
+create or replace procedure product_save(
+    v_pno in product.pno%type,
+    v_pname in product.pname%type,
+    v_price in product.price%type,
+    v_pcnt in product.pcnt%type)
+is
+begin
+    insert into product
+    values(v_pno, v_pname, v_price, v_pcnt);
+    commit;
+end;
+/
+
+execute product_save('N02', '색종이', 500, 10);
+
+select * from product;
+
+
+create or replace procedure buyer_save(
+    v_bid in buyer.bid%type,
+    v_bname in buyer.bname%type,
+    v_btel in buyer.btel%type,
+    v_baddr in buyer.baddr%type)
+is
+begin
+    insert into buyer
+    values(v_bid, v_bname, v_btel, v_baddr);
+    commit;
+end;
+/
+
+execute buyer_save('jang', '장하다', '010-3424-5555', '대구 서구');
+
+select * from buyer;
